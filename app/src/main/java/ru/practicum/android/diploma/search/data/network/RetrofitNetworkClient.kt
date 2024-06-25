@@ -23,13 +23,17 @@ import ru.practicum.android.diploma.vacancy.data.dto.response.VacancyDetailsResp
 import java.io.IOException
 
 class RetrofitNetworkClient(
-    private val apiService: HHApiService
+    private val apiService: HHApiService,
 ) : NetworkClient {
     override suspend fun doRequest(dto: Any): Response {
         if (!isConnected()) {
-            return Response().apply { resultCode = CONNECTION_ERROR }
+            Response().apply { resultCode = CONNECTION_ERROR }
         }
 
+        return getResponse(dto)
+    }
+
+    private suspend fun getResponse(dto: Any): Response {
         return withContext(Dispatchers.IO) {
             try {
                 when (dto) {
