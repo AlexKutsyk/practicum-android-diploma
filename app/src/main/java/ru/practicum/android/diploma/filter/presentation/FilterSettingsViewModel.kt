@@ -20,7 +20,6 @@ class FilterSettingsViewModel(
     private var savedSalary = 0L
     private var savedOnlyWithSalary = false
 
-
     private val _placeWorkState: MutableLiveData<String> = MutableLiveData()
     fun getPlaceWorkState(): LiveData<String> = _placeWorkState
 

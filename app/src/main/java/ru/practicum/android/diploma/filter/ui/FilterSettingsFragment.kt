@@ -41,6 +41,7 @@ class FilterSettingsFragment : BindingFragment<FragmentFilterSettingsBinding>() 
         inputSalary()
         setOnClickListener()
         salaryFocusChangeListener()
+        setOnBackPressed()
     }
 
     private fun setOnClickListener() {
@@ -81,16 +82,19 @@ class FilterSettingsFragment : BindingFragment<FragmentFilterSettingsBinding>() 
                 readNewSettings()
                 viewModel.buttonGroupOn()
             }
-            requireActivity().onBackPressedDispatcher.addCallback(
-                viewLifecycleOwner,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        viewModel.returnSavedSettings()
-                        findNavController().popBackStack()
-                    }
-                }
-            )
         }
+    }
+
+    private fun setOnBackPressed() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    viewModel.returnSavedSettings()
+                    findNavController().popBackStack()
+                }
+            }
+        )
     }
 
     private fun inputSalary() {
