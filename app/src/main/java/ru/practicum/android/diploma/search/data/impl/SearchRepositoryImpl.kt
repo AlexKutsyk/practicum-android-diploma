@@ -40,7 +40,7 @@ class SearchRepositoryImpl(
             }
         }
     }
-
+    
     private fun createOptionalFields(request: VacanciesSearchRequest): HashMap<String, String> {
         val industryId: String = request.filterSettings.industry.id
         val onlyWithSalary: Boolean = request.filterSettings.onlyWithSalary
